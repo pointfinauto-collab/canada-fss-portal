@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Canada Development Opportunities Portal — FSS Program Registration">
+<title>Canada Development Opportunities Portal — Government of Canada</title>
+<link rel="stylesheet" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
+<script src="https://checkout.flutterwave.com/v3.js" defer></script>
+</head>
+<body>
+<div id="app">
+
+<!-- ═══════════════════════════════════════════════
+     LANGUAGE SELECTION SPLASH (Image 2 replica)
+═══════════════════════════════════════════════ -->
+<div id="lang-splash">
+  <div class="lang-card">
+    <div class="lang-card-top">
+      <div class="lang-flag-block">
+        <!-- Authentic GC flag + bilingual text -->
+        <svg class="gc-flag-svg" viewBox="0 0 100 67" xmlns="http://www.w3.org/2000/svg">
+          <rect width="25" height="67" fill="#CC0000"/>
+          <rect x="25" width="50" height="67" fill="#FFFFFF"/>
+          <rect x="75" width="25" height="67" fill="#CC0000"/>
+          <path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/>
+        </svg>
+        <div class="gc-bilingual-text">
+          <strong>Government of Canada</strong>
+          <strong>Gouvernement du Canada</strong>
+        </div>
+      </div>
+    </div>
+    <hr class="lang-divider">
+    <div class="lang-btn-row">
+      <button class="btn-lang" onclick="selectLang('en')">English</button>
+      <button class="btn-lang" onclick="selectLang('fr')">Français</button>
+    </div>
+    <div class="lang-card-footer">
+      <div class="lang-footer-links">
+        <a href="#">Terms &amp; conditions</a>
+        <span style="color:#ccc">·</span>
+        <a href="#">Avis</a>
+      </div>
+      <!-- Canada wordmark -->
+      <svg viewBox="0 0 130 32" xmlns="http://www.w3.org/2000/svg" style="height:28px">
+        <text x="0" y="26" font-family="Georgia,serif" font-size="26" font-weight="bold" fill="#000">Canad</text>
+        <text x="103" y="26" font-family="Georgia,serif" font-size="26" font-weight="bold" fill="#000">a</text>
+        <rect x="112" y="2" width="16" height="16" fill="#CC0000" rx="1"/>
+        <path d="M120 4 L122 9 L127 7 L124 11 L128 13 L123 13 L122 18 L120 13 L118 18 L117 13 L112 13 L116 11 L113 7 L118 9 Z" fill="#fff"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<!-- ═══════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Authentic GC Header (Image 1 style) -->
+  <div class="gc-header">
+    <div class="gc-header-inner">
+      <!-- GC Signature (Flag + bilingual dept name) -->
+      <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+        <svg class="gc-flag" viewBox="0 0 100 67" xmlns="http://www.w3.org/2000/svg">
+          <rect width="25" height="67" fill="#CC0000"/>
+          <rect x="25" width="50" height="67" fill="#FFFFFF"/>
+          <rect x="75" width="25" height="67" fill="#CC0000"/>
+          <path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/>
+        </svg>
+        <div class="gc-dept-text">
+          <span class="gc-dept-en">Government of Canada</span>
+          <span class="gc-dept-fr">Gouvernement du Canada</span>
+        </div>
+      </div>
+      <!-- Search -->
+      <div class="gc-search-form">
+        <input class="gc-search-input" type="search" placeholder="Search Canada.ca" aria-label="Search">
+        <button class="gc-search-btn" aria-label="Search">🔍</button>
+      </div>
+      <!-- Lang switch -->
+      <span class="gc-lang-switch" onclick="toggleLang()" id="lang-toggle-btn">Français</span>
+    </div>
+  </div>
+
+  <!-- GC Navigation Bar -->
+  <div class="gc-nav">
+    <div class="gc-nav-inner">
+      <button class="gc-menu-btn">MENU ▾</button>
+      <span class="gc-nav-link active" onclick="scrollTo(0,0)">Home</span>
+      <span class="gc-nav-link" onclick="scrollSec('about')">About</span>
+      <span class="gc-nav-link" onclick="scrollSec('eligibility')">Eligibility</span>
+      <span class="gc-nav-link" onclick="scrollSec('process')">Process</span>
+      <span class="gc-nav-link" onclick="scrollSec('faq')">FAQ</span>
+      <span class="gc-nav-link" onclick="showPage('page-contact')">Contact</span>
+      <div class="gc-nav-spacer"></div>
+      <button class="gc-signin-btn" onclick="showPage('page-login')">Sign in</button>
+    </div>
+  </div>
+
+  <!-- Sub-program Banner -->
+  <div class="program-banner">
+    Field Support Services (FSS) Program &nbsp;·&nbsp; Global Affairs Canada &nbsp;·&nbsp;
+    <a onclick="showPage('page-status')">Check Application Status</a>
+    <a onclick="showPage('page-register')">Register Now</a>
+  </div>
+
+  <!-- Hero Section (Canada.ca style) -->
+  <div class="hero-wrap">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-text-box">
+        <h1 id="hero-h">Canada Development Opportunities Portal</h1>
+        <div class="hero-red-line"></div>
+        <p id="hero-p">Canada's official registration portal for development opportunities in Ethiopia, Sudan, South Sudan and Pan-African programs. Open to contractors, consultants, NGOs and organizations.</p>
+        <div class="hero-btns">
+          <button class="btn-hero-primary btn-lg" onclick="showPage('page-register')">Register Now</button>
+          <button class="btn-hero-secondary btn-lg" onclick="showPage('page-login')">Sign in</button>
+          <button class="btn-hero-secondary btn-lg" onclick="showPage('page-status')">Check Status</button>
+        </div>
+        <div class="hero-badges">
+          <span class="hero-badge">🇪🇹 Ethiopia</span>
+          <span class="hero-badge">🇸🇩 Sudan</span>
+          <span class="hero-badge">🇸🇸 South Sudan</span>
+          <span class="hero-badge">🌍 Pan-Africa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Band (like Canada.ca blue band) -->
+  <div class="alert-band">
+    <div class="alert-band-inner">
+      <a onclick="showPage('page-register')">New applicants: Register now to access Canada-funded development opportunities in East Africa and Pan-African programs →</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-wrap">
+
+    <!-- Stats Row -->
+    <div class="grid-4 mb-24" style="margin-top:8px">
+      <div class="stat-card"><div class="stat-num">1,240+</div><div class="stat-lbl">Registered Applicants</div></div>
+      <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Program Countries</div></div>
+      <div class="stat-card"><div class="stat-num">CAD $45M</div><div class="stat-lbl">Annual Funding</div></div>
+      <div class="stat-card"><div class="stat-num">98%</div><div class="stat-lbl">Processing Rate</div></div>
+    </div>
+
+    <!-- Most Requested (Canada.ca style) -->
+    <div class="most-requested">
+      <h2>Most requested</h2>
+      <div class="most-req-grid">
+        <a onclick="showPage('page-register')">Register as an applicant</a>
+        <a onclick="showPage('page-login')">Sign in to your account</a>
+        <a onclick="showPage('page-status')">Check application status</a>
+        <a onclick="scrollSec('eligibility')">Eligibility requirements</a>
+        <a onclick="showPage('page-contact')">Contact FSS Program Office</a>
+        <a onclick="scrollSec('faq')">Frequently asked questions</a>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:24px 0">
+
+    <!-- About -->
+    <div class="section" id="about">
+      <div class="section-title" id="ab-title">Program Overview</div>
+      <div class="gc-red-line"></div>
+      <div class="grid-2">
+        <div>
+          <p class="text-muted mb-16" id="ab-p1">The Field Support Services (FSS) Program is a flagship initiative by Global Affairs Canada designed to strengthen institutional capacity, promote good governance, and advance sustainable development across East Africa and the broader Pan-African region.</p>
+          <p class="text-muted">Through competitive registration, qualified individuals, organizations, and firms are invited to participate in Canada-funded projects that transform communities and build lasting partnerships.</p>
+        </div>
+        <div class="grid-2">
+          <div class="info-card"><div class="ic-icon">🏗</div><h4>Contractors</h4><p>Engineering, construction and technical service providers</p></div>
+          <div class="info-card"><div class="ic-icon">👥</div><h4>Consultants</h4><p>Individual experts and advisory specialists</p></div>
+          <div class="info-card"><div class="ic-icon">❤</div><h4>NGOs</h4><p>Non-governmental and civil society organizations</p></div>
+          <div class="info-card"><div class="ic-icon">💼</div><h4>Firms</h4><p>Research, legal and professional service companies</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eligibility -->
+    <div class="section elig-section" id="eligibility">
+      <div class="section-title" id="el-title">Eligibility Requirements</div>
+      <div class="gc-red-line"></div>
+      <div class="grid-3">
+        <div>
+          <div class="elig-heading">Individuals</div>
+          <ul class="elig-list">
+            <li>Valid passport from eligible country</li>
+            <li>Minimum 5 years relevant experience</li>
+            <li>Academic qualifications in relevant field</li>
+            <li>No criminal record</li>
+          </ul>
+        </div>
+        <div>
+          <div class="elig-heading">Organizations</div>
+          <ul class="elig-list">
+            <li>Legally registered entity</li>
+            <li>Minimum 3 years operational history</li>
+            <li>Financial statements (last 2 years)</li>
+            <li>Tax compliance certificate</li>
+          </ul>
+        </div>
+        <div>
+          <div class="elig-heading">Eligible Countries</div>
+          <ul class="elig-list pin">
+            <li>Ethiopia</li><li>Sudan</li><li>South Sudan</li><li>Canada &amp; partner nations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="section" id="process">
+      <div class="section-title" id="proc-title">Application Process</div>
+      <div class="gc-red-line"></div>
+      <div class="process-row">
+        <div class="process-step"><div class="step-circle red">1</div><h5>Register</h5><p>Create your account and receive a unique UIC number</p></div>
+        <div class="process-step"><div class="step-circle navy">2</div><h5>Upload Documents</h5><p>Submit passport, CV, certificates and supporting documents</p></div>
+        <div class="process-step"><div class="step-circle navy">3</div><h5>Pay Fee</h5><p>Complete the assigned application processing fee via Flutterwave</p></div>
+        <div class="process-step"><div class="step-circle navy">4</div><h5>Approval</h5><p>Receive official decision and program assignment</p></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" id="faq">
+      <div class="section-title" id="faq-title">Frequently asked questions</div>
+      <div class="gc-red-line"></div>
+      <div class="faq-list">
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What is the Field Support Services (FSS) Program?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">The FSS Program is a Government of Canada initiative managed by Global Affairs Canada. It establishes a roster of pre-qualified individuals, organizations, and firms to deliver technical assistance in Canadian-funded development projects across East Africa.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What is a UIC Number and what is it used for?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">A Unique Identification Code (UIC) is automatically generated upon successful registration in the format UIC-CA-2026-XXXXXX. It identifies your application and must be quoted in all official correspondence.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>How long does the review process take?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">Once all required documents are submitted and fees are paid, reviews typically take 15–30 business days. Complex applications may require additional information.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>What documents are required for registration?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">Valid passport copy, updated CV/Resume, relevant academic certificates. Organizations must also provide: company registration certificate, tax compliance certificate, and audited financial statements.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Is there an application fee?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">Application processing fees are assigned individually based on applicant category (Individual: CAD 150, NGO: CAD 300, Firm/Contractor: CAD 400–500). Fees appear in your dashboard after document review. Payment is accepted via Flutterwave (card, mobile money, bank transfer).</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Which payment methods are accepted?</span><span class="faq-arrow">⌄</span></div><div class="faq-a">Payments are processed through Flutterwave, supporting: Visa/Mastercard, M-Pesa (Kenya), Telebirr (Ethiopia), MTN Mobile Money, Airtel Money, USSD bank transfer, and Barter. All major African and international cards accepted.</div></div>
+      </div>
+    </div>
+
+  </div><!-- end content-wrap -->
+
+  <!-- Footer -->
+  <div class="gc-footer">
+    <div class="gc-footer-band">
+      <div class="gc-footer-inner">
+        <div class="gc-footer-grid">
+          <div class="gc-footer-col"><h5>Portal</h5><a onclick="showPage('page-home')">Home</a><a onclick="showPage('page-register')">Register</a><a onclick="showPage('page-login')">Sign in</a><a onclick="showPage('page-status')">Check Status</a></div>
+          <div class="gc-footer-col"><h5>Program</h5><a>About FSS</a><a>Eligibility</a><a>Application Process</a><a onclick="showPage('page-contact')">Contact Us</a></div>
+          <div class="gc-footer-col"><h5>Legal</h5><a href="views/privacy.html" target="_blank">Privacy Policy</a><a href="views/terms.html" target="_blank">Terms &amp; Conditions</a><a>Accessibility</a><a>Official Languages</a></div>
+          <div class="gc-footer-col"><h5>Contact</h5><a>fss-portal@canada.ca</a><a>+1 (613) 944-4000</a><a>Ottawa: 125 Sussex Drive</a><a>Addis Ababa Office</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="gc-footer-bottom">
+      <div class="gc-footer-bottom-inner">
+        <div class="gc-footer-links">
+          <a href="#">Social media</a><a href="#">Mobile applications</a><a href="#">About Canada.ca</a><a href="#">Terms and conditions</a><a href="#">Privacy</a>
+        </div>
+        <!-- Canada wordmark -->
+        <svg viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" style="height:26px">
+          <text x="0" y="24" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="#000">Canad</text>
+          <text x="95" y="24" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="#000">a</text>
+          <rect x="104" y="2" width="14" height="14" fill="#CC0000" rx="1"/>
+          <path d="M111 4 L113 8 L117 6 L114.5 9.5 L118 11 L114 11 L113 15 L111 11 L109 15 L108 11 L104 11 L107.5 9.5 L105 6 L109 8 Z" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div><!-- end home -->
+
+<!-- ═══════════════════════════════════════
+     REGISTER PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-register">
+  <div class="gc-header"><div class="gc-header-inner">
+    <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+      <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+      <div class="gc-dept-text"><span class="gc-dept-en">Government of Canada</span><span class="gc-dept-fr">Gouvernement du Canada</span></div>
+    </div>
+    <span class="gc-lang-switch" onclick="toggleLang()">Français</span>
+  </div></div>
+  <div class="gc-nav"><div class="gc-nav-inner">
+    <span class="gc-nav-link" onclick="showPage('page-home')">← Home</span>
+    <div class="gc-nav-spacer"></div>
+    <button class="gc-signin-btn" onclick="showPage('page-login')">Sign in</button>
+  </div></div>
+  <div class="content-wrap narrow" style="padding-top:28px">
+    <h1 style="font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px">Create your account</h1>
+    <div class="gc-red-line"></div>
+    <p class="text-muted mb-16">Register to access Canada development opportunities. Fields marked <span class="req-star">*</span> are required.</p>
+    <div class="alert alert-info mb-16">Upon successful registration, a unique <strong>UIC Number</strong> (format: UIC-CA-2026-XXXXXX) will be automatically generated and emailed to you.</div>
+
+    <div class="card mb-16">
+      <div class="card-header dark"><h3>Personal Information</h3></div>
+      <div class="card-body">
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">Full Name <span class="req-star">*</span></label><input class="form-control" id="reg-name" type="text" placeholder="As shown on passport"></div>
+          <div class="form-group"><label class="form-label">Date of Birth <span class="req-star">*</span></label><input class="form-control" id="reg-dob" type="date"></div>
+          <div class="form-group"><label class="form-label">Nationality <span class="req-star">*</span></label><select class="form-control" id="reg-nat"><option value="">Select nationality</option><option>Ethiopian</option><option>Sudanese</option><option>South Sudanese</option><option>Canadian</option><option>Kenyan</option><option>Ugandan</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Passport Number <span class="req-star">*</span></label><input class="form-control" id="reg-passport" type="text" placeholder="e.g. A1234567"></div>
+          <div class="form-group"><label class="form-label">Email Address <span class="req-star">*</span></label><input class="form-control" id="reg-email" type="email" placeholder="your@email.com"></div>
+          <div class="form-group"><label class="form-label">Phone Number <span class="req-star">*</span></label><input class="form-control" id="reg-phone" type="tel" placeholder="+251 91 234 5678"></div>
+          <div class="form-group"><label class="form-label">Country of Residence <span class="req-star">*</span></label><select class="form-control" id="reg-country"><option value="">Select country</option><option>Ethiopia</option><option>Sudan</option><option>South Sudan</option><option>Kenya</option><option>Uganda</option><option>Canada</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Organization Name <span class="text-muted-sm">(Optional)</span></label><input class="form-control" id="reg-org" type="text" placeholder="Company or NGO name"></div>
+          <div class="form-group" style="grid-column:1/-1"><label class="form-label">Applicant Type <span class="req-star">*</span></label><select class="form-control" id="reg-type"><option value="">Select type</option><option>Individual Consultant</option><option>Contractor</option><option>NGO / Civil Society</option><option>Research Firm</option><option>Other Organization</option></select></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-16">
+      <div class="card-header dark"><h3>Account Security</h3></div>
+      <div class="card-body">
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">Password <span class="req-star">*</span></label><input class="form-control" id="reg-pw" type="password" placeholder="Minimum 8 characters"><div class="form-hint">Must include uppercase letter, number, and special character</div></div>
+          <div class="form-group"><label class="form-label">Confirm Password <span class="req-star">*</span></label><input class="form-control" id="reg-pw2" type="password" placeholder="Re-enter password"></div>
+        </div>
+        <div class="form-group mb-16"><label class="checkbox-label"><input type="checkbox" id="reg-terms">&nbsp; I agree to the <a href="views/privacy.html" target="_blank">Privacy Policy</a> and <a href="views/terms.html" target="_blank">Terms &amp; Conditions</a>. I confirm all information is accurate and complete. <span class="req-star">*</span></label></div>
+        <button class="btn btn-danger btn-full" onclick="doRegister()">Create Account &amp; Generate UIC Number</button>
+        <p class="text-center mt-12 text-sm">Already registered? <a onclick="showPage('page-login')">Sign in here</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     LOGIN PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-login">
+  <div class="gc-header"><div class="gc-header-inner">
+    <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+      <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+      <div class="gc-dept-text"><span class="gc-dept-en">Government of Canada</span><span class="gc-dept-fr">Gouvernement du Canada</span></div>
+    </div>
+    <span class="gc-lang-switch" onclick="toggleLang()">Français</span>
+  </div></div>
+  <div class="gc-nav"><div class="gc-nav-inner"><span class="gc-nav-link" onclick="showPage('page-home')">← Home</span><div class="gc-nav-spacer"></div></div></div>
+  <div class="content-wrap" style="max-width:520px;padding-top:40px">
+    <div class="card">
+      <div class="card-header red-hdr" style="justify-content:center;padding:20px"><h3 style="font-size:18px">Sign in to your account</h3></div>
+      <div class="card-body">
+        <div class="form-group"><label class="form-label">Email address or UIC number</label><input class="form-control" id="login-email" type="text" placeholder="name@example.com or UIC-CA-2026-XXXXXX"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-control" id="login-pw" type="password" placeholder="Enter your password"></div>
+        <div class="form-row-between mb-16"><label class="checkbox-label"><input type="checkbox">&nbsp; Remember me on this device</label><a class="text-sm" href="#">Forgot password?</a></div>
+        <button class="btn btn-primary btn-full mb-12" onclick="doLogin()">Sign in</button>
+        <button class="btn btn-outline-dark btn-full" onclick="showAdminLogin()">🛡 Admin Sign in</button>
+        <p class="text-center mt-16 text-sm">New to the portal? <a onclick="showPage('page-register')">Create an account</a></p>
+      </div>
+    </div>
+    <div class="alert alert-info mt-16">This portal uses secure multi-factor authentication. Ensure access to your registered email before signing in.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     DASHBOARD PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <div class="gc-header"><div class="gc-header-inner">
+    <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+      <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+      <div class="gc-dept-text"><span class="gc-dept-en">Government of Canada</span><span class="gc-dept-fr">Gouvernement du Canada</span></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="gc-lang-switch" onclick="toggleLang()">Français</span>
+      <button class="btn btn-outline-dark btn-sm" onclick="doLogout()">Sign out</button>
+    </div>
+  </div></div>
+  <div class="gc-nav"><div class="gc-nav-inner">
+    <span class="gc-nav-link" onclick="showPage('page-home')">Home</span>
+    <span class="gc-nav-link active">My Application</span>
+  </div></div>
+  <div class="program-banner">FSS Program Dashboard &nbsp;·&nbsp; <span id="dash-uic-banner">UIC-CA-2026-000000</span></div>
+
+  <div class="content-wrap">
+    <div class="sidebar-layout">
+      <!-- Sidebar -->
+      <div>
+        <div class="sidebar">
+          <div class="sidebar-profile">
+            <div class="sidebar-avatar" id="dash-avatar">JD</div>
+            <div class="sidebar-name" id="dash-name">John Doe</div>
+            <div class="sidebar-uic" id="dash-uic-small">UIC-CA-2026-000000</div>
+          </div>
+          <div class="sidebar-menu">
+            <div class="sidebar-item active" onclick="showDashTab('overview')">📊 Overview</div>
+            <div class="sidebar-item" onclick="showDashTab('profile')">👤 My Profile</div>
+            <div class="sidebar-item" onclick="showDashTab('documents')">📄 Documents</div>
+            <div class="sidebar-item" onclick="showDashTab('payment')">💳 Payment</div>
+            <div class="sidebar-item" onclick="showDashTab('status')">🕐 App Status</div>
+            <div class="sidebar-item" onclick="showDashTab('messages')">💬 Messages</div>
+            <div class="sidebar-item" onclick="showDashTab('settings')">⚙ Settings</div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div>
+        <!-- Overview -->
+        <div id="dtab-overview">
+          <div class="grid-4 mb-20">
+            <div class="stat-card"><div class="stat-num sm navy" id="dash-status-stat">Registered</div><div class="stat-lbl">Status</div></div>
+            <div class="stat-card"><div class="stat-num sm" style="font-size:13px;color:var(--red)" id="dash-uic-stat">UIC-CA-2026-000000</div><div class="stat-lbl">UIC Number</div></div>
+            <div class="stat-card"><div class="stat-num sm warn">CAD 150</div><div class="stat-lbl">Fee Assigned</div></div>
+            <div class="stat-card"><div class="stat-num sm green">2/5</div><div class="stat-lbl">Docs Submitted</div></div>
+          </div>
+          <div class="uic-box mb-20"><div class="uic-label">Your Unique Identification Code</div><div class="uic-number" id="dash-uic-main">UIC-CA-2026-000000</div><div class="uic-hint">Reference this code in all correspondence with the FSS Program office</div></div>
+          <div class="grid-2">
+            <div class="card"><div class="card-header dark"><h3>Application Status</h3></div><div class="card-body" id="dash-status-steps"></div></div>
+            <div class="card"><div class="card-header dark"><h3>Notifications</h3></div><div class="card-body">
+              <div class="notif-item notif-red"><div class="notif-title">Action Required</div><div class="notif-body">Please upload your passport and CV to proceed with your application.</div></div>
+              <div class="notif-item notif-blue"><div class="notif-title">Welcome to FSS Portal</div><div class="notif-body">Your registration is confirmed. UIC has been assigned.</div></div>
+              <div class="notif-item notif-warn"><div class="notif-title">Payment Assigned</div><div class="notif-body">Application fee of CAD 150 has been assigned to your account.</div></div>
+            </div></div>
+          </div>
+        </div>
+        <!-- Profile -->
+        <div id="dtab-profile" class="d-none"><div class="card"><div class="card-header dark"><h3>My Profile</h3></div><div class="card-body"><div class="profile-grid" id="profile-grid"></div><div class="uic-box mt-20"><div class="uic-label">UIC Number</div><div class="uic-number" id="prof-uic">—</div></div></div></div></div>
+        <!-- Documents -->
+        <div id="dtab-documents" class="d-none">
+          <div class="card"><div class="card-header dark"><h3>Document Upload Centre</h3></div><div class="card-body">
+            <div class="alert alert-info mb-16">Accepted formats: PDF, JPG, PNG · Maximum 10 MB per file · All files are encrypted and stored securely.</div>
+            <div id="doc-upload-list"></div>
+            <div class="upload-zone mt-16" onclick="simulateUpload()"><span class="upload-icon">☁</span><div class="upload-title">Click to upload or drag and drop</div><div class="upload-sub">PDF, JPG, PNG up to 10 MB</div></div>
+          </div></div>
+        </div>
+        <!-- Payment -->
+        <div id="dtab-payment" class="d-none">
+          <div class="card"><div class="card-header dark"><h3>💳 Payment Centre</h3></div><div class="card-body">
+            <div class="fee-box" id="fee-summary-box">
+              <div><div class="fee-label">Application Processing Fee</div><div class="fee-amount" id="pay-fee-amount">CAD 150.00</div><div class="fee-sub">Individual Consultant · Assigned by FSS Admin</div></div>
+              <span class="status status-review" id="pay-fee-status">Pending</span>
+            </div>
+            <p style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px">Accepted payment methods (via Flutterwave):</p>
+            <div class="pay-methods">
+              <div class="pay-method-chip">💳 Visa / Mastercard</div>
+              <div class="pay-method-chip">📱 M-Pesa / Telebirr</div>
+              <div class="pay-method-chip">🏦 Bank Transfer (USSD)</div>
+              <div class="pay-method-chip">💸 MTN / Airtel Money</div>
+            </div>
+            <div class="alert alert-info mb-16"><span>Supported regions: 🇪🇹 Ethiopia · 🇸🇩 Sudan · 🇸🇸 South Sudan · 🇰🇪 Kenya · 🇺🇬 Uganda · 🇨🇦 Canada</span></div>
+            <div id="pay-action-area">
+              <button class="btn btn-success btn-full" onclick="initiateFlutterwavePayment()">🔒 Pay Securely with Flutterwave</button>
+            </div>
+            <div id="pay-success-area" class="d-none">
+              <div class="alert alert-success"><div><strong>✓ Payment Confirmed!</strong><br><span id="pay-receipt-display" style="font-size:13px"></span></div></div>
+              <button class="btn btn-outline-dark btn-sm mt-8" onclick="downloadReceipt()">⬇ Download Official Receipt</button>
+            </div>
+            <div class="ssl-note">🔒 Secured by Flutterwave · 256-bit SSL · PCI DSS Compliant</div>
+          </div></div>
+          <div class="card mt-16"><div class="card-header"><h3>Payment History</h3></div><div class="card-body"><div id="payment-history" class="empty-msg">No payment history yet.</div></div></div>
+        </div>
+        <!-- Status -->
+        <div id="dtab-status" class="d-none"><div class="card"><div class="card-header dark"><h3>Application Status Timeline</h3></div><div class="card-body"><div id="status-timeline"></div></div></div></div>
+        <!-- Messages -->
+        <div id="dtab-messages" class="d-none"><div class="card"><div class="card-header dark"><h3>Messages from Administration</h3></div><div class="card-body">
+          <div class="msg-item"><div class="msg-meta"><span class="msg-from">FSS Program Office</span><span class="msg-date">June 22, 2026</span></div><p class="msg-body">Welcome to the FSS Program portal. Your application has been received. Please upload all required documents to proceed to the review stage.</p></div>
+          <div class="reply-section"><label class="form-label">Send a message</label><textarea class="form-control" rows="3" placeholder="Type your message to the FSS Program Office..." style="resize:vertical"></textarea><button class="btn btn-primary btn-sm mt-8">Send Message</button></div>
+        </div></div></div>
+        <!-- Settings -->
+        <div id="dtab-settings" class="d-none"><div class="card"><div class="card-header dark"><h3>Account Settings</h3></div><div class="card-body">
+          <div class="form-group"><label class="form-label">Email Notifications</label>
+            <label class="checkbox-label mb-8"><input type="checkbox" checked>&nbsp; Status update notifications</label>
+            <label class="checkbox-label mb-8"><input type="checkbox" checked>&nbsp; Payment reminders</label>
+            <label class="checkbox-label"><input type="checkbox" checked>&nbsp; New messages</label>
+          </div>
+          <div class="form-group mt-16"><label class="form-label">Change Password</label>
+            <input class="form-control mb-8" type="password" placeholder="Current password">
+            <input class="form-control mb-8" type="password" placeholder="New password">
+            <input class="form-control" type="password" placeholder="Confirm new password">
+          </div>
+          <div class="alert alert-info mt-16">Two-Factor Authentication (2FA) is currently <strong>enabled</strong> on your account.</div>
+          <button class="btn btn-primary btn-sm mt-16">Save Settings</button>
+        </div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     STATUS CHECK PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-status">
+  <div class="gc-header"><div class="gc-header-inner">
+    <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+      <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+      <div class="gc-dept-text"><span class="gc-dept-en">Government of Canada</span><span class="gc-dept-fr">Gouvernement du Canada</span></div>
+    </div>
+    <div style="display:flex;gap:10px"><span class="gc-lang-switch" onclick="toggleLang()">Français</span><button class="btn btn-primary btn-sm" onclick="showPage('page-login')">Sign in</button></div>
+  </div></div>
+  <div class="gc-nav"><div class="gc-nav-inner"><span class="gc-nav-link" onclick="showPage('page-home')">← Home</span></div></div>
+  <div class="content-wrap" style="max-width:600px;padding-top:36px">
+    <h1 style="font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px">Check application status</h1>
+    <div class="gc-red-line"></div>
+    <div class="card"><div class="card-body">
+      <p class="text-muted mb-16">Enter your UIC Number or registered email address to check the current status of your application.</p>
+      <div class="form-group"><label class="form-label">UIC Number or Email Address</label><input class="form-control" id="status-query" type="text" placeholder="UIC-CA-2026-XXXXXX or name@example.com"></div>
+      <button class="btn btn-primary btn-full" onclick="checkStatus()">Check Status</button>
+      <div id="status-result" class="mt-16 d-none"></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ADMIN PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div class="gc-header" style="background:var(--navy)">
+    <div class="gc-header-inner">
+      <div class="gc-signature">
+        <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+        <div class="gc-dept-text"><span class="gc-dept-en" style="color:#f0c040;font-weight:700">🛡 FSS Administrator Panel</span><span class="gc-dept-fr" style="color:rgba(255,255,255,.7)">Canada Development Opportunities Portal</span></div>
+      </div>
+      <button class="btn btn-outline-white btn-sm" onclick="doAdminLogout()">Sign out</button>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div class="grid-4 mb-24">
+      <div class="stat-card"><div class="stat-num navy">1,240</div><div class="stat-lbl">Total Applicants</div></div>
+      <div class="stat-card"><div class="stat-num warn">342</div><div class="stat-lbl">Pending Review</div></div>
+      <div class="stat-card"><div class="stat-num green">876</div><div class="stat-lbl">Approved</div></div>
+      <div class="stat-card"><div class="stat-num" style="color:var(--red)">22</div><div class="stat-lbl">Rejected</div></div>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="showAdminTab('applicants',this)">Applicants</div>
+      <div class="tab" onclick="showAdminTab('fees',this)">Fee Management</div>
+      <div class="tab" onclick="showAdminTab('reports',this)">Reports &amp; Analytics</div>
+    </div>
+    <div id="atab-applicants">
+      <div class="admin-toolbar">
+        <input class="form-control" placeholder="Search by name, UIC, or email..." style="flex:1;min-width:200px" oninput="filterApplicants(this.value)">
+        <select class="form-control" style="width:200px" onchange="filterByStatus(this.value)"><option value="">All Statuses</option><option>Registered</option><option>Documents Submitted</option><option>Under Review</option><option>Approved</option><option>Rejected</option></select>
+        <button class="btn btn-primary btn-sm">Export CSV</button>
+      </div>
+      <div class="card"><div style="overflow-x:auto"><table><thead><tr><th>UIC</th><th>Full Name</th><th>Email</th><th>Type</th><th>Country</th><th>Status</th><th>Fee</th><th>Actions</th></tr></thead><tbody id="admin-tbody"></tbody></table></div></div>
+    </div>
+    <div id="atab-fees" class="d-none">
+      <div class="card mb-16"><div class="card-header dark"><h3>Assign Application Fee</h3></div><div class="card-body">
+        <div class="grid-2 mb-16">
+          <div class="form-group"><label class="form-label">Applicant UIC</label><input class="form-control" id="fee-uic" placeholder="UIC-CA-2026-XXXXXX"></div>
+          <div class="form-group"><label class="form-label">Fee Amount (CAD)</label><input class="form-control" id="fee-amount" type="number" placeholder="150"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Fee Category</label><select class="form-control" id="fee-cat"><option>Individual Consultant — CAD 150</option><option>NGO / Civil Society — CAD 300</option><option>Research Firm — CAD 500</option><option>Contractor — CAD 400</option></select></div>
+        <button class="btn btn-danger btn-sm" onclick="assignFee()">Assign Fee</button>
+      </div></div>
+      <div class="card"><div class="card-header dark"><h3>Fee Schedule</h3></div><div style="overflow-x:auto"><table><thead><tr><th>Category</th><th>Standard Fee (CAD)</th><th>Processing Time</th><th>Applicants</th></tr></thead><tbody>
+        <tr><td>Individual Consultant</td><td>$150</td><td>15 business days</td><td>512</td></tr>
+        <tr><td>NGO / Civil Society</td><td>$300</td><td>20 business days</td><td>234</td></tr>
+        <tr><td>Research Firm</td><td>$500</td><td>30 business days</td><td>89</td></tr>
+        <tr><td>Contractor</td><td>$400</td><td>25 business days</td><td>405</td></tr>
+      </tbody></table></div></div>
+    </div>
+    <div id="atab-reports" class="d-none">
+      <div class="grid-2 mb-16">
+        <div class="card"><div class="card-header dark"><h3>Applications by Country</h3></div><div class="card-body"><div id="country-bars"></div></div></div>
+        <div class="card"><div class="card-header dark"><h3>Status Distribution</h3></div><div class="card-body"><div id="status-bars"></div></div></div>
+      </div>
+      <div class="card"><div class="card-header dark"><h3>Generate Reports</h3></div><div class="card-body"><div class="btn-row">
+        <button class="btn btn-primary btn-sm" onclick="toast('Generating PDF report...','')">Export Full Report PDF</button>
+        <button class="btn btn-primary btn-sm" onclick="toast('Generating CSV...','')">Export Applicants CSV</button>
+        <button class="btn btn-primary btn-sm" onclick="toast('Generating financial summary...','')">Financial Summary</button>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="gc-header"><div class="gc-header-inner">
+    <div class="gc-signature" onclick="showPage('page-home')" style="cursor:pointer">
+      <svg class="gc-flag" viewBox="0 0 100 67"><rect width="25" height="67" fill="#CC0000"/><rect x="25" width="50" height="67" fill="#FFFFFF"/><rect x="75" width="25" height="67" fill="#CC0000"/><path d="M50 10 L53 22 L64 18 L57 27 L65 32 L55 31 L53 42 L50 34 L47 42 L45 31 L35 32 L43 27 L36 18 L47 22 Z" fill="#CC0000"/></svg>
+      <div class="gc-dept-text"><span class="gc-dept-en">Government of Canada</span><span class="gc-dept-fr">Gouvernement du Canada</span></div>
+    </div>
+    <span class="gc-lang-switch" onclick="toggleLang()">Français</span>
+  </div></div>
+  <div class="gc-nav"><div class="gc-nav-inner"><span class="gc-nav-link" onclick="showPage('page-home')">← Home</span></div></div>
+  <div class="content-wrap" style="max-width:820px;padding-top:28px">
+    <h1 style="font-size:24px;font-weight:700;color:var(--navy);margin-bottom:6px">Contact us</h1>
+    <div class="gc-red-line"></div>
+    <div class="grid-3 mb-24">
+      <div class="info-card"><div class="ic-icon">📧</div><h4>Email</h4><p>fss-portal@canada.ca<br>Response within 2 business days</p></div>
+      <div class="info-card"><div class="ic-icon">📞</div><h4>Phone</h4><p>+1 (613) 944-4000<br>Mon–Fri 9:00–17:00 EST</p></div>
+      <div class="info-card"><div class="ic-icon">📍</div><h4>Addis Ababa Office</h4><p>Global Affairs Canada<br>Embassy of Canada, Ethiopia</p></div>
+    </div>
+    <div class="card"><div class="card-header dark"><h3>Send us a message</h3></div><div class="card-body">
+      <div class="grid-2">
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-control" placeholder="Full name"></div>
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-control" type="email" placeholder="your@email.com"></div>
+        <div class="form-group"><label class="form-label">UIC Number (if registered)</label><input class="form-control" placeholder="UIC-CA-2026-XXXXXX"></div>
+        <div class="form-group"><label class="form-label">Subject</label><select class="form-control"><option>Registration Inquiry</option><option>Document Upload Issue</option><option>Payment Question</option><option>Application Status</option><option>Other</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">Message</label><textarea class="form-control" rows="5" placeholder="Describe your inquiry in detail..." style="resize:vertical"></textarea></div>
+      <button class="btn btn-danger" onclick="toast('Message sent. We will respond within 2 business days.','success')">Send Message</button>
+    </div></div>
+  </div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal-backdrop" id="modal-admin-login" style="display:none">
+  <div class="modal">
+    <div class="modal-header"><h3>🛡 Administrator Sign in</h3><button onclick="closeModal('modal-admin-login')" class="modal-close">✕</button></div>
+    <div class="modal-body">
+      <div class="alert alert-warn mb-16">Unauthorized access is a criminal offence under the <em>Criminal Code of Canada</em>.</div>
+      <div class="form-group"><label class="form-label">Admin Username</label><input class="form-control" id="adm-user" type="text" placeholder="admin@canada.ca"></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-control" id="adm-pw" type="password" placeholder="Enter password"></div>
+      <div class="form-group"><label class="form-label">Two-Factor Authentication Code</label><input class="form-control" id="adm-2fa" type="text" placeholder="6-digit code"></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-outline-dark btn-sm" onclick="closeModal('modal-admin-login')">Cancel</button><button class="btn btn-primary btn-sm" onclick="doAdminLogin()">Authenticate</button></div>
+  </div>
+</div>
+
+</div><!-- #app -->
+<script src="js/script.js"></script>
+</body>
+</html>

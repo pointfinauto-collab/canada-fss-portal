@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48">
+  <text x="0" y="36" font-family="Georgia,serif" font-size="36" font-weight="bold" fill="#000">Canad</text>
+  <text x="142" y="36" font-family="Georgia,serif" font-size="36" font-weight="bold" fill="#000">a</text>
+  <rect x="159" y="6" width="20" height="20" fill="#CC0000" rx="1"/>
+  <path d="M169 8 L171 13 L176 11 L173 15 L177 17 L172 17 L171 22 L169 17 L167 22 L166 17 L161 17 L165 15 L162 11 L167 13 Z" fill="#fff"/>
+</svg>
